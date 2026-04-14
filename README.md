@@ -28,6 +28,8 @@ HTML5 + CSS3 + JavaScript vanilla — sin frameworks. Chart.js para las gráfica
 | Paciente / Cuidador | Seleccionar cuenta en el modal de login | — |
 
 ## Estructura del proyecto
+
+```text
 bionova/
 ├── index.html
 ├── css/
@@ -43,6 +45,7 @@ bionova/
 │   ├── appointments.js
 │   └── notifications.js
 └── assets/
+```
 
 ## Contexto académico
 
