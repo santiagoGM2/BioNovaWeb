@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amo los cachetes de mi novia</title>
+  <meta name="description"
+    content="BioNova: plataforma de gestión de salud personal para pacientes, médicos y cuidadores. Controla medicamentos, citas y adherencia." />
+  <meta name="theme-color" content="#1B6CA8" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     SCREEN 1 — LOGIN
+═══════════════════════════════════════════════════════════ -->
+  <section id="screen-login" class="screen" role="main" aria-label="Ingreso a BioNova">
+
+    <!-- Decorative SVG blob top-right -->
+    <svg class="login-deco" width="440" height="440" viewBox="0 0 440 440" fill="none" aria-hidden="true">
+      <circle cx="220" cy="220" r="220" fill="#1B6CA8" />
+      <circle cx="300" cy="140" r="130" fill="#0A9396" />
+    </svg>
+    <svg class="login-deco-2" width="320" height="320" viewBox="0 0 320 320" fill="none" aria-hidden="true">
+      <circle cx="160" cy="160" r="160" fill="#1B6CA8" />
+    </svg>
+
+    <div class="login-card" id="login-content" role="region" aria-label="Formulario de acceso">
+
+      <!-- Logo -->
+      <div class="login-logo-wrap">
+        <div class="login-logo-icon" aria-hidden="true" style="background:transparent;">
+          <img src="https://i.ibb.co/T5w6Qdq/Bionova.jpg" alt="BioNova" width="80" height="80"
+            style="border-radius: 12px; object-fit: cover;" />
+        </div>
+        <div class="login-brand">BioNova</div>
+        <div class="login-tagline">Amo los cachetes de mi novia</div>
+      </div>
+
+      <!-- Role buttons -->
+      <div class="login-section-title">Selecciona tu perfil</div>
+      <div class="login-role-buttons">
+
+        <!-- Paciente -->
+        <button class="login-role-btn" id="btn-login-patient" aria-label="Ingresar como paciente con Google">
+          <div class="login-role-icon icon-patient" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <div class="login-role-text-group">
+            <div class="login-role-label">Paciente</div>
+            <div class="login-role-desc">Ingresar con Google</div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="color:var(--color-text-disabled)">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+
+        <!-- Médico -->
+        <button class="login-role-btn" id="btn-login-doctor" aria-label="Ingresar como médico" aria-expanded="false">
+          <div class="login-role-icon icon-doctor" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M6.6 18.6A9 9 0 1 1 21 12h0a9 9 0 0 1-9 9" />
+              <path d="M12 12v3a3 3 0 0 0 6 0v-1" />
+            </svg>
+          </div>
+          <div class="login-role-text-group">
+            <div class="login-role-label">Médico</div>
+            <div class="login-role-desc">Acceso con credenciales</div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="color:var(--color-text-disabled)">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        <!-- Doctor inline form -->
+        <div class="doctor-login-form" id="doctor-login-form" role="form" aria-label="Formulario de acceso médico">
+          <div class="form-group">
+            <label class="form-label" for="doctor-email">Correo electrónico</label>
+            <input type="email" id="doctor-email" class="form-control" placeholder="medico@bionova.co"
+              autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doctor-password">Contraseña</label>
+            <input type="password" id="doctor-password" class="form-control" placeholder="••••••••"
+              autocomplete="current-password" />
+          </div>
+          <div class="form-error" id="doctor-login-error" role="alert"></div>
+          <button class="btn btn-primary btn-full mt-sm" id="doctor-login-submit" style="margin-top:12px">
+            Ingresar como médico
+          </button>
+          <div style="margin-top:10px;font-size:12px;color:var(--color-text-disabled);text-align:center">
+            Demo: medico@bionova.co · dra.ospina@bionova.co / doctor123
+          </div>
+        </div>
+
+        <!-- Cuidador -->
+        <button class="login-role-btn" id="btn-login-caregiver" aria-label="Ingresar como cuidador con Google">
+          <div class="login-role-icon icon-caregiver" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="8.5" cy="7" r="4" />
+              <polyline points="17 11 19 13 23 9" />
+            </svg>
+          </div>
+          <div class="login-role-text-group">
+            <div class="login-role-label">Cuidador</div>
+            <div class="login-role-desc">Gestionar paciente vinculado</div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="color:var(--color-text-disabled)">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Footer -->
+      <div style="margin-top:24px;text-align:center;font-size:11px;color:var(--color-text-disabled)">
+        BioNova la mejor plataforma de Gestión en Salud
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+     APP SHELL (todas las pantallas autenticadas)
+═══════════════════════════════════════════════════════════ -->
+
+  <!-- ─── DASHBOARD PACIENTE ──────────────────────────────────── -->
+  <section id="screen-dashboard" class="screen" role="main" aria-label="Dashboard del paciente">
+    <div class="app-shell">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="main-sidebar" role="navigation" aria-label="Navegación principal">
+        <div class="sidebar-logo">
+          <div style="display:flex; align-items:center; gap: 10px;">
+            <img src="https://i.ibb.co/T5w6Qdq/Bionova.jpg" alt="BioNova" width="36" height="36"
+              style="border-radius: 8px; object-fit: cover;" />
+            <div>
+              <div class="brand-name">BioNova</div>
+              <div class="brand-tagline">Amo los cachetes de mi novia</div>
+            </div>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <span class="nav-section-label">Principal</span>
+          <div class="nav-item active" data-route="#dashboard" data-roles="paciente,cuidador" tabindex="0" role="link"
+            aria-current="page">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+            Dashboard
+          </div>
+          <div class="nav-item" data-route="#medications" data-roles="paciente,cuidador" tabindex="0" role="link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.5 20.5L3.5 13.5a5 5 0 0 1 7.07-7.07L10.5 6.36" />
+              <path d="M13.5 3.5L20.5 10.5a5 5 0 0 1-7.07 7.07L13.5 17.64" />
+              <line x1="8" y1="16" x2="16" y2="8" />
+            </svg>
+            Medicamentos
+          </div>
+          <div class="nav-item" data-route="#appointments" data-roles="paciente,cuidador" tabindex="0" role="link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            Citas médicas
+          </div>
+          <div class="nav-item" data-route="#stats" data-roles="paciente,cuidador" tabindex="0" role="link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10" />
+              <line x1="12" y1="20" x2="12" y2="4" />
+              <line x1="6" y1="20" x2="6" y2="14" />
+            </svg>
+            Estadísticas
+          </div>
+          <div class="nav-item" data-route="#notifications" data-roles="paciente,cuidador" tabindex="0" role="link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            Notificaciones
+            <span class="nav-badge" id="notif-badge" style="display:none">0</span>
+          </div>
+
+          <span class="nav-section-label" data-roles="medico" style="display:none">Médico</span>
+          <div class="nav-item" data-route="#doctor-patients" data-roles="medico" tabindex="0" role="link"
+            style="display:none">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            Mis pacientes
+          </div>
+          <div class="nav-item" data-route="#doctor-global" data-roles="medico" tabindex="0" role="link"
+            style="display:none">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            Dashboard global
+          </div>
+        </nav>
+        <div class="sidebar-user">
+          <div class="user-avatar-small" id="sidebar-avatar">--</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name" id="sidebar-user-name">—</div>
+            <div class="sidebar-user-role" id="sidebar-user-role">—</div>
+          </div>
+          <button class="btn-logout" id="btn-logout" title="Cerrar sesión" aria-label="Cerrar sesión">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <div class="main-content">
+        <header class="page-topbar">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menú">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <h1 class="topbar-title">Dashboard</h1>
+          <span class="topbar-date" id="topbar-date-dash"></span>
+        </header>
+        <main class="page-content" id="dash-page-content">
+          <div id="caregiver-banner" class="caregiver-banner" style="display:none"></div>
+
+          <!-- Hero welcome -->
+          <div class="dashboard-hero" id="dash-welcome"></div>
+
+          <!-- Today's medications -->
+          <div class="section-header mt-lg">
+            <h2 class="section-title">Hoy</h2>
+            <span class="text-label">Medicamentos del día</span>
+          </div>
+          <div id="dash-meds-today"></div>
+
+          <!-- Next appointment -->
+          <div class="section-header mt-lg">
+            <h2 class="section-title">Próxima cita</h2>
+          </div>
+          <div id="dash-next-appt"></div>
+
+          <!-- Weekly adherence chart -->
+          <div class="mt-lg" style="display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Adherencia esta semana</div>
+                  <div class="card-subtitle">Medicamentos esperados vs tomados</div>
+                </div>
+              </div>
+              <div class="chart-container">
+                <canvas id="chart-week-adherence"></canvas>
+              </div>
+            </div>
+
+            <!-- Tip of the day -->
+            <div>
+              <h2 class="section-title mb-sm">Consejo del día</h2>
+              <div id="dash-tip"></div>
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── MEDICATIONS ─────────────────────────────────────────── -->
+  <section id="screen-medications" class="screen" role="main" aria-label="Medicamentos">
+    <div class="app-shell">
+      <aside class="sidebar" role="navigation" aria-label="Navegación principal"><!-- shared nav rendered by JS -->
+      </aside>
+      <div class="main-content">
+        <header class="page-topbar">
+          <button class="mobile-menu-btn" aria-label="Abrir menú"
+            onclick="document.getElementById('main-sidebar').classList.toggle('mobile-open')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <h1 class="topbar-title">Medicamentos</h1>
+          <button class="btn btn-primary btn-sm" id="btn-add-med">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Agregar medicamento
+          </button>
+        </header>
+        <main class="page-content">
+          <div id="meds-caregiver-banner" class="caregiver-banner" style="display:none"></div>
+
+          <!-- Filters -->
+          <div class="section-header">
+            <h2 class="section-title">Mis medicamentos</h2>
+            <div class="filter-bar" id="meds-filters">
+              <button class="filter-chip active" data-filter="todos">Todos</button>
+              <button class="filter-chip" data-filter="tomados">Tomados hoy</button>
+              <button class="filter-chip" data-filter="pendientes">Pendientes</button>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Medicamento</th>
+                  <th>Dosis</th>
+                  <th>Frecuencia</th>
+                  <th>Horario</th>
+                  <th>Estado hoy</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="meds-tbody"></tbody>
+            </table>
+          </div>
+
+          <!-- History collapsible -->
+          <div class="history-collapsible mt-lg">
+            <div class="collapsible-header" id="history-header" aria-expanded="false">
+              <h2 class="h3" style="margin:0;padding:16px 20px">Historial de los últimos 7 días</h2>
+              <div style="padding-right:20px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
+            </div>
+            <div class="collapsible-body" id="history-body">
+              <div class="history-grid" id="meds-history-body" style="padding:0 0 8px 0"></div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── APPOINTMENTS ────────────────────────────────────────── -->
+  <section id="screen-appointments" class="screen" role="main" aria-label="Citas médicas">
+    <div class="app-shell">
+      <aside class="sidebar" role="navigation"></aside>
+      <div class="main-content">
+        <header class="page-topbar">
+          <button class="mobile-menu-btn" aria-label="Abrir menú"
+            onclick="document.getElementById('main-sidebar').classList.toggle('mobile-open')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <h1 class="topbar-title">Citas médicas</h1>
+        </header>
+        <main class="page-content">
+          <div id="appts-caregiver-banner" class="caregiver-banner" style="display:none"></div>
+          <div class="section-header mb-md">
+            <h2 class="section-title">Mis citas</h2>
+            <span class="text-label">Las citas son gestionadas por tu médico</span>
+          </div>
+          <div id="appts-list"></div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── STATS ───────────────────────────────────────────────── -->
+  <section id="screen-stats" class="screen" role="main" aria-label="Estadísticas">
+    <div class="app-shell">
+      <aside class="sidebar" role="navigation"></aside>
+      <div class="main-content">
+        <header class="page-topbar">
+          <button class="mobile-menu-btn" aria-label="Abrir menú"
+            onclick="document.getElementById('main-sidebar').classList.toggle('mobile-open')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <h1 class="topbar-title">Estadísticas</h1>
+        </header>
+        <main class="page-content">
+          <h2 class="section-title mb-md">Tu resumen de salud</h2>
+
+          <!-- KPI cards -->
+          <div class="grid-4 mb-lg">
+            <div class="kpi-card">
+              <div class="kpi-card-icon kpi-icon-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10.5 20.5L3.5 13.5a5 5 0 0 1 7.07-7.07L10.5 6.36" />
+                  <path d="M13.5 3.5L20.5 10.5a5 5 0 0 1-7.07 7.07L13.5 17.64" />
+                  <line x1="8" y1="16" x2="16" y2="8" />
+                </svg>
+              </div>
+              <div class="kpi-card-label">Medicamentos activos</div>
+              <div class="kpi-card-value" id="stat-meds-activos">—</div>
+              <div class="kpi-card-sub">En seguimiento actual</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-icon kpi-icon-accent">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              <div class="kpi-card-label">Adherencia este mes</div>
+              <div class="kpi-card-value" id="stat-adherencia-mes">—</div>
+              <div class="kpi-card-sub">Últimos 30 días</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-icon kpi-icon-warning">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+              </div>
+              <div class="kpi-card-label">Citas asistidas</div>
+              <div class="kpi-card-value" id="stat-citas-asistidas">—</div>
+              <div class="kpi-card-sub">Total histórico</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-icon kpi-icon-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </div>
+              <div class="kpi-card-label">Racha actual</div>
+              <div class="kpi-card-value" id="stat-racha">—</div>
+              <div class="kpi-card-sub">Días consecutivos completos</div>
+            </div>
+          </div>
+
+          <!-- Charts row -->
+          <div class="grid-2 mb-lg">
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Dosis semanales</div>
+                  <div class="card-subtitle">Esperadas vs tomadas esta semana</div>
+                </div>
+              </div>
+              <div class="chart-container">
+                <canvas id="chart-stats-bar"></canvas>
+              </div>
+            </div>
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Adherencia mensual</div>
+                  <div class="card-subtitle">Porcentaje semanal del último mes</div>
+                </div>
+              </div>
+              <div class="chart-container">
+                <canvas id="chart-stats-line"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- History table -->
+          <div class="stats-table-section">
+            <h2 class="section-title mb-sm">Histórico semanal</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Semana</th>
+                    <th>Período</th>
+                    <th>Días completos</th>
+                    <th>Adherencia</th>
+                  </tr>
+                </thead>
+                <tbody id="stats-history-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Extra stats: best streak, most missed, monthly comparative -->
+          <div id="stats-extra"></div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── NOTIFICATIONS ───────────────────────────────────────── -->
+  <section id="screen-notifications" class="screen" role="main" aria-label="Notificaciones">
+    <div class="app-shell">
+      <aside class="sidebar" role="navigation"></aside>
+      <div class="main-content">
+        <header class="page-topbar">
+          <button class="mobile-menu-btn" aria-label="Abrir menú"
+            onclick="document.getElementById('main-sidebar').classList.toggle('mobile-open')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <h1 class="topbar-title">Notificaciones</h1>
+        </header>
+        <main class="page-content">
+          <div class="notif-page-header">
+            <div>
+              <h2 class="section-title">Centro de notificaciones</h2>
+              <span class="text-secondary" id="notif-unread-count" style="font-size:13px"></span>
+            </div>
+            <button class="btn btn-ghost btn-sm" id="btn-mark-all-read">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Marcar todas como leídas
+            </button>
+          </div>
+          <div class="notif-list" id="notif-list"></div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+     DOCTOR SCREENS
+═══════════════════════════════════════════════════════════ -->
+
+  <!-- ─── DOCTOR PATIENTS ─────────────────────────────────────── -->
+  <section id="screen-doctor-patients" class="screen" role="main" aria-label="Panel de pacientes">
+    <div class="app-shell">
+      <!-- Doctor sidebar -->
+      <aside class="sidebar" role="navigation" aria-label="Navegación médica">
+        <div class="sidebar-logo">
+          <div style="display:flex; align-items:center; gap: 10px;">
+            <img src="https://i.ibb.co/T5w6Qdq/Bionova.jpg" alt="BioNova" width="36" height="36"
+              style="border-radius: 8px; object-fit: cover;" />
+            <div>
+              <div class="brand-name">BioNova</div>
+              <div class="brand-tagline">Panel médico</div>
+            </div>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <span class="nav-section-label">Médico / Dr.</span>
+          <div class="nav-item active" data-route="#doctor-patients" tabindex="0" role="link" aria-current="page">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            Mis pacientes
+          </div>
+          <div class="nav-item" data-route="#doctor-global" tabindex="0" role="link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            Dashboard global
+          </div>
+        </nav>
+        <div class="sidebar-user">
+          <div class="user-avatar-small" id="sidebar-avatar">DR</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name" id="sidebar-user-name">Dr. —</div>
+            <div class="sidebar-user-role" id="sidebar-user-role">Médico</div>
+          </div>
+          <button class="btn-logout" id="btn-logout" title="Cerrar sesión" aria-label="Cerrar sesión">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <header class="page-topbar">
+          <h1 class="topbar-title">Panel Médico</h1>
+          <span class="text-secondary" id="doctor-name-header" style="font-size:14px;font-weight:500"></span>
+        </header>
+        <main class="page-content">
+          <div class="doctor-hero">
+            <h2>Gestión de pacientes</h2>
+            <p>Monitorea la adherencia, asigna medicamentos y programa citas.</p>
+          </div>
+
+          <div class="section-header mb-sm">
+            <h2 class="section-title">Mis pacientes</h2>
+          </div>
+
+          <div class="patients-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Paciente</th>
+                  <th>Edad</th>
+                  <th>Condición</th>
+                  <th>Adherencia</th>
+                  <th>Última actividad</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="patients-tbody"></tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Patient drawer -->
+    <div class="drawer-overlay" id="drawer-overlay" role="presentation"></div>
+    <aside class="drawer" id="patient-drawer" role="complementary" aria-label="Detalle del paciente">
+      <div class="drawer-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="patient-avatar" id="drawer-patient-initials">--</div>
+          <div>
+            <div style="font-weight:700;font-size:16px" id="drawer-patient-name">—</div>
+            <div style="font-size:12px;color:var(--color-text-secondary)" id="drawer-patient-meta">—</div>
+          </div>
+        </div>
+        <button class="modal-close" id="btn-close-drawer" aria-label="Cerrar panel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <!-- Adherence -->
+        <div class="drawer-section">
+          <div class="drawer-section-title">Adherencia al tratamiento</div>
+          <div id="drawer-adherence"></div>
+        </div>
+
+        <!-- Medications -->
+        <div class="drawer-section">
+          <div class="drawer-section-title">Medicamentos asignados</div>
+          <div id="drawer-meds"></div>
+          <button class="btn btn-primary btn-sm mt-sm" id="btn-assign-med" style="margin-top:12px">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Asignar medicamento
+          </button>
+        </div>
+
+        <!-- Appointments -->
+        <div class="drawer-section">
+          <div class="drawer-section-title">Citas recientes</div>
+          <div id="drawer-appts"></div>
+          <button class="btn btn-secondary btn-sm mt-sm" id="btn-create-appt" style="margin-top:12px">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Crear cita
+          </button>
+        </div>
+
+        <!-- Timeline -->
+        <div class="drawer-section">
+          <div class="drawer-section-title">Actividad reciente</div>
+          <div id="drawer-timeline"></div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+
+  <!-- ─── DOCTOR GLOBAL DASHBOARD ─────────────────────────────── -->
+  <section id="screen-doctor-global" class="screen" role="main" aria-label="Dashboard global">
+    <div class="app-shell">
+      <aside class="sidebar" role="navigation" aria-label="Navegación médica">
+        <div class="sidebar-logo">
+          <div style="display:flex; align-items:center; gap: 10px;">
+            <img src="https://i.ibb.co/T5w6Qdq/Bionova.jpg" alt="BioNova" width="36" height="36"
+              style="border-radius: 8px; object-fit: cover;" />
+            <div>
+              <div class="brand-name">BioNova</div>
+              <div class="brand-tagline">Panel médico</div>
+            </div>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <span class="nav-section-label">Médico</span>
+          <div class="nav-item" data-route="#doctor-patients" tabindex="0" role="link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            Mis pacientes
+          </div>
+          <div class="nav-item active" data-route="#doctor-global" tabindex="0" role="link" aria-current="page">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            Dashboard global
+          </div>
+        </nav>
+        <div class="sidebar-user">
+          <div class="user-avatar-small">DR</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name" style="font-size:13px">Dr. Carlos Herrera</div>
+            <div class="sidebar-user-role" style="font-size:11px">Médico</div>
+          </div>
+          <button class="btn-logout" id="btn-logout-global" title="Cerrar sesión" aria-label="Cerrar sesión"
+            onclick="BioNovaAuth.logout()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <header class="page-topbar">
+          <h1 class="topbar-title">Dashboard global</h1>
+        </header>
+        <main class="page-content">
+
+          <!-- KPIs -->
+          <div class="global-kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-card-icon kpi-icon-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="kpi-card-label">Pacientes activos</div>
+              <div class="kpi-card-value" id="global-pacientes">—</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-icon kpi-icon-accent">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              <div class="kpi-card-label">Adherencia global</div>
+              <div class="kpi-card-value" id="global-adherencia">—</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-icon kpi-icon-warning">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+              </div>
+              <div class="kpi-card-label">Citas esta semana</div>
+              <div class="kpi-card-value" id="global-citas-semana">—</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-card-icon kpi-icon-danger">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+              </div>
+              <div class="kpi-card-label">Alertas activas</div>
+              <div class="kpi-card-value" id="global-alertas">—</div>
+              <div class="kpi-card-sub">Adherencia &lt; 60%</div>
+            </div>
+          </div>
+
+          <!-- Highlights -->
+          <div id="global-highlights" class="mb-lg"></div>
+
+          <!-- Charts -->
+          <div class="charts-grid mb-lg">
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Adherencia por paciente</div>
+                  <div class="card-subtitle">Últimos 30 días</div>
+                </div>
+              </div>
+              <div class="chart-container" style="height:200px">
+                <canvas id="chart-global-bar"></canvas>
+              </div>
+            </div>
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Distribución de citas</div>
+                  <div class="card-subtitle">Todas las citas registradas</div>
+                </div>
+              </div>
+              <div class="chart-container" style="height:200px">
+                <canvas id="chart-global-donut"></canvas>
+              </div>
+            </div>
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Evolución adherencia global</div>
+                  <div class="card-subtitle">Semana a semana — último mes</div>
+                </div>
+              </div>
+              <div class="chart-container" style="height:200px">
+                <canvas id="chart-global-trend"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline + Alerts -->
+          <div class="grid-2">
+            <div>
+              <h2 class="section-title mb-sm">Actividad reciente</h2>
+              <div class="card" style="padding:16px 20px">
+                <div id="global-timeline"></div>
+              </div>
+            </div>
+            <div>
+              <h2 class="section-title mb-sm">Alertas de adherencia</h2>
+              <div class="alerts-table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Paciente</th>
+                      <th>Condición</th>
+                      <th>Adherencia</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="alerts-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Citas esta semana -->
+          <div class="mt-lg">
+            <h2 class="section-title mb-sm">Citas esta semana</h2>
+            <div id="global-week-appts"></div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+     MODALS
+═══════════════════════════════════════════════════════════ -->
+
+  <!-- Google Account Picker -->
+  <div class="modal-overlay" id="modal-google" role="dialog" aria-modal="true"
+    aria-label="Seleccionar cuenta de Google">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Seleccionar cuenta</div>
+          <div class="modal-subtitle">Elige tu cuenta de Google para continuar</div>
+        </div>
+        <button class="modal-close" onclick="BioNovaModal.close(document.getElementById('modal-google'))"
+          aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" style="padding:0">
+        <!-- Main account list view -->
+        <div id="google-main-view" style="padding:0 20px 20px">
+          <div class="google-account-list" id="google-account-list"></div>
+        </div>
+        <!-- New account form view (hidden by default) -->
+        <div id="google-new-account-form" style="display:none;padding:0 20px 20px">
+          <button type="button" onclick="_bionovaAuth.hideNewAccountForm()"
+            style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;cursor:pointer;color:var(--color-primary);font-size:13px;font-weight:600;padding:4px 0 16px;font-family:inherit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5" />
+              <path d="M12 19l-7-7 7-7" />
+            </svg>
+            Volver a cuentas
+          </button>
+          <div style="font-weight:700;font-size:16px;margin-bottom:16px">Crear nueva cuenta</div>
+          <div class="form-group">
+            <label class="form-label" for="new-acc-nombre">Nombre completo</label>
+            <input type="text" id="new-acc-nombre" class="form-control" placeholder="Tu nombre completo"
+              autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="new-acc-email">Correo electrónico</label>
+            <input type="email" id="new-acc-email" class="form-control" placeholder="tu@correo.com"
+              autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="new-acc-pass">Contraseña</label>
+            <input type="password" id="new-acc-pass" class="form-control" placeholder="Mínimo 6 caracteres"
+              autocomplete="new-password" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="new-acc-passconfirm">Confirmar contraseña</label>
+            <input type="password" id="new-acc-passconfirm" class="form-control" placeholder="Repite la contraseña"
+              autocomplete="new-password" />
+          </div>
+          <div class="form-error" id="new-acc-error" role="alert"></div>
+          <button class="btn btn-primary" style="width:100%;margin-top:12px" onclick="_bionovaAuth.submitNewAccount()">
+            Crear cuenta e ingresar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Medication (patient) -->
+  <div class="modal-overlay" id="modal-med-overlay" role="dialog" aria-modal="true"
+    aria-label="Formulario de medicamento">
+    <div class="modal" id="modal-med">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modal-med-title">Agregar medicamento</div>
+          <div class="modal-subtitle">Completa la información del medicamento</div>
+        </div>
+        <button class="modal-close" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="med-form-nombre">Nombre del medicamento</label>
+          <input type="text" id="med-form-nombre" class="form-control" placeholder="Ej: Metformina" />
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="med-form-dosis">Dosis</label>
+            <input type="text" id="med-form-dosis" class="form-control" placeholder="Ej: 500 mg" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="med-form-frecuencia">Frecuencia</label>
+            <select id="med-form-frecuencia" class="form-control">
+              <option value="cada_8h">Cada 8 horas</option>
+              <option value="cada_12h">Cada 12 horas</option>
+              <option value="cada_24h" selected>Una vez al día</option>
+              <option value="a_demanda">A demanda</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="med-form-horario">Horarios (separados por coma)</label>
+          <input type="text" id="med-form-horario" class="form-control" placeholder="Ej: 07:00, 19:00" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="med-form-notas">Notas o indicaciones</label>
+          <textarea id="med-form-notas" class="form-control" placeholder="Instrucciones adicionales..."></textarea>
+        </div>
+        <div class="form-error" id="med-form-error" role="alert"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost"
+          onclick="BioNovaModal.close(document.getElementById('modal-med-overlay'))">Cancelar</button>
+        <button class="btn btn-primary" id="btn-save-med">Guardar medicamento</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation -->
+  <div class="modal-overlay" id="modal-delete-overlay" role="dialog" aria-modal="true"
+    aria-label="Confirmar eliminación">
+    <div class="modal modal-sm" id="modal-delete">
+      <div class="modal-header">
+        <div class="modal-title">Eliminar medicamento</div>
+        <button class="modal-close" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert-banner alert-banner-danger mb-md">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          Esta acción no se puede deshacer
+        </div>
+        <p style="font-size:14px;color:var(--color-text-primary)">
+          ¿Estás seguro de que deseas eliminar <strong id="delete-med-name"></strong> de tu lista de medicamentos?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="btn-delete-cancel">Cancelar</button>
+        <button class="btn btn-danger" id="btn-delete-confirm">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doctor: Assign medication modal -->
+  <div class="modal-overlay" id="modal-doc-med-overlay" role="dialog" aria-modal="true"
+    aria-label="Asignar medicamento">
+    <div class="modal" id="modal-doc-med">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Asignar medicamento</div>
+          <div class="modal-subtitle">Asignar nuevo medicamento al paciente</div>
+        </div>
+        <button class="modal-close" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="doc-med-nombre">Nombre del medicamento</label>
+          <input type="text" id="doc-med-nombre" class="form-control" placeholder="Ej: Amlodipino" />
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="doc-med-dosis">Dosis</label>
+            <input type="text" id="doc-med-dosis" class="form-control" placeholder="Ej: 10 mg" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-med-frecuencia">Frecuencia</label>
+            <select id="doc-med-frecuencia" class="form-control">
+              <option value="cada_8h">Cada 8 horas</option>
+              <option value="cada_12h">Cada 12 horas</option>
+              <option value="cada_24h" selected>Una vez al día</option>
+              <option value="a_demanda">A demanda</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="doc-med-horario">Horarios recomendados</label>
+          <input type="text" id="doc-med-horario" class="form-control" placeholder="Ej: 08:00, 20:00" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="doc-med-notas">Indicaciones clínicas</label>
+          <textarea id="doc-med-notas" class="form-control" placeholder="Instrucciones para el paciente..."></textarea>
+        </div>
+        <div class="form-error" id="doc-med-error" role="alert"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost"
+          onclick="BioNovaModal.close(document.getElementById('modal-doc-med-overlay'))">Cancelar</button>
+        <button class="btn btn-primary" id="btn-save-doc-med">Asignar medicamento</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doctor: Create appointment modal -->
+  <div class="modal-overlay" id="modal-doc-appt-overlay" role="dialog" aria-modal="true" aria-label="Crear cita médica">
+    <div class="modal" id="modal-doc-appt">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Crear cita médica</div>
+          <div class="modal-subtitle">Programar nueva cita para el paciente</div>
+        </div>
+        <button class="modal-close" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="doc-appt-fecha">Fecha</label>
+            <input type="date" id="doc-appt-fecha" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-appt-hora">Hora</label>
+            <input type="time" id="doc-appt-hora" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="doc-appt-tipo">Modalidad</label>
+          <select id="doc-appt-tipo" class="form-control">
+            <option value="virtual">Virtual</option>
+            <option value="presencial">Presencial</option>
+          </select>
+        </div>
+        <!-- Virtual: Meet link -->
+        <div class="form-group" id="doc-appt-link-row">
+          <label class="form-label" for="doc-appt-link">Enlace de Meet</label>
+          <input type="url" id="doc-appt-link" class="form-control"
+            placeholder="https://meet.google.com/kpw-tvfq-tqd" />
+        </div>
+        <!-- Presencial: Centro + Dirección -->
+        <div id="doc-appt-pres-row" style="display:none">
+          <div class="form-group">
+            <label class="form-label" for="doc-appt-centro">Centro médico</label>
+            <input type="text" id="doc-appt-centro" class="form-control" placeholder="Ej: Clínica Imbanaco" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="doc-appt-direccion">Dirección</label>
+            <input type="text" id="doc-appt-direccion" class="form-control"
+              placeholder="Ej: Cra. 38 Bis #5B2-04, Cali" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="doc-appt-notas">Notas de la cita</label>
+          <textarea id="doc-appt-notas" class="form-control"
+            placeholder="Motivo de consulta, indicaciones previas..."></textarea>
+        </div>
+        <div class="form-error" id="doc-appt-error" role="alert"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost"
+          onclick="BioNovaModal.close(document.getElementById('modal-doc-appt-overlay'))">Cancelar</button>
+        <button class="btn btn-primary" id="btn-save-doc-appt">Crear cita</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout confirmation modal -->
+  <div class="modal-overlay" id="modal-logout-overlay" role="dialog" aria-modal="true"
+    aria-label="Confirmar cierre de sesión">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <div class="modal-title">Cerrar sesión</div>
+        <button class="modal-close" id="btn-logout-modal-close"
+          onclick="BioNovaModal.close(document.getElementById('modal-logout-overlay'))" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:14px;color:var(--color-text-primary);margin:0">
+          ¿Deseas cerrar tu sesión en BioNova? Tendrás que volver a seleccionar tu perfil la próxima vez.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="btn-logout-cancel">Cancelar</button>
+        <button class="btn btn-danger" id="btn-logout-confirm">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════ -->
+  <script src="js/icons.js"></script>
+  <script src="js/mockData.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sidebarShared.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/medications.js"></script>
+  <script src="js/appointments.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/doctorPatients.js"></script>
+  <script src="js/doctorGlobal.js"></script>
+
+  <script>
+    // ─── BOOTSTRAP ────────────────────────────────────────────────
+    (function () {
+
+      // Multi-sidebar nav delegation — all sidebars listen to nav-item clicks
+      document.addEventListener('click', function (e) {
+        const navEl = e.target.closest('.nav-item[data-route]');
+        if (navEl) {
+          const route = navEl.dataset.route;
+          if (route) BioNovaRouter.navigate(route);
+        }
+      });
+
+      // Keyboard nav
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const navEl = e.target.closest('.nav-item[data-route]');
+          if (navEl) {
+            e.preventDefault();
+            BioNovaRouter.navigate(navEl.dataset.route);
+          }
+        }
+      });
+
+      // Topbar date
+      (function setDate() {
+        const today = new Date().toLocaleDateString('es-CO', {
+          weekday: 'long', day: '2-digit', month: 'long', year: 'numeric'
+        });
+        const el = document.getElementById('topbar-date-dash');
+        if (el) el.textContent = today.charAt(0).toUpperCase() + today.slice(1);
+      })();
+
+      // Init modules
+      BioNovaAuth.init();
+      BioNovaRouter.init();
+
+    })();
+  </script>
+
+</body>
+
+</html>
