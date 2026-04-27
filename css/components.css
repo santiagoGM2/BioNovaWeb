@@ -778,6 +778,30 @@ select.form-control {
 
 @media (max-width: 768px) {
   .mobile-menu-btn { display: flex; }
+
+  /* Appointment card: stack actions below info on mobile */
+  .appt-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Modal: ensure it fits small screens */
+  .modal {
+    max-height: 95vh;
+    margin: auto;
+  }
+
+  /* Form grid: single column on mobile */
+  .form-grid-2 { grid-template-columns: 1fr; }
+
+  /* Drawer: full width on mobile */
+  .drawer { width: 100%; max-width: 100%; }
+
+  /* Filter bar: allow wrapping */
+  .filter-bar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
 }
 
 /* ─── PATIENT ROW (doctor panel) ─────────────────────────────── */

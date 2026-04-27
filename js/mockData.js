@@ -66,6 +66,17 @@ window.BioNovaData = (function () {
       cuidadorId: "c3"
     },
 
+    {
+      id: "u6",
+      role: "paciente",
+      nombre: "María de los Ángeles Molano",
+      email: "maria.molano@gmail.com",
+      edad: 67,
+      condicion: "Diabetes tipo 2 / Hipertensión arterial",
+      avatar: null,
+      cuidadorId: null
+    },
+
     // ── MÉDICOS ──
     {
       id: "m1",
@@ -76,7 +87,7 @@ window.BioNovaData = (function () {
       especialidad: "Medicina Interna",
       licencia: "RM-2048-COL",
       avatar: null,
-      pacientes: ["u1", "u2", "u4"]
+      pacientes: ["u6", "u1", "u2", "u4"]
     },
     {
       id: "m2",
@@ -216,6 +227,32 @@ window.BioNovaData = (function () {
       activo: true, fechaInicio: "2026-03-01", color: "#5C6B7A"
     },
 
+    // ── María de los Ángeles Molano (u6) — 4 meds ──
+    {
+      id: "med17", pacienteId: "u6", nombre: "Metformina", dosis: "850 mg",
+      frecuencia: "cada_12h", horarios: ["07:30", "19:30"],
+      notas: "Tomar con el desayuno y la cena para reducir molestias gástricas",
+      activo: true, fechaInicio: "2025-06-15", color: "#0A9396"
+    },
+    {
+      id: "med18", pacienteId: "u6", nombre: "Losartán", dosis: "100 mg",
+      frecuencia: "cada_24h", horarios: ["08:00"],
+      notas: "Tomar en la mañana. Control de presión arterial",
+      activo: true, fechaInicio: "2025-08-01", color: "#1B6CA8"
+    },
+    {
+      id: "med19", pacienteId: "u6", nombre: "Glibenclamida", dosis: "5 mg",
+      frecuencia: "cada_24h", horarios: ["07:30"],
+      notas: "Tomar antes del desayuno. Vigilar síntomas de hipoglucemia",
+      activo: true, fechaInicio: "2025-06-15", color: "#D97706"
+    },
+    {
+      id: "med20", pacienteId: "u6", nombre: "Omeprazol", dosis: "20 mg",
+      frecuencia: "cada_24h", horarios: ["07:00"],
+      notas: "Tomar 30 minutos antes del desayuno",
+      activo: true, fechaInicio: "2025-06-15", color: "#C94040"
+    },
+
     // ── Sofía Guzmán (u5) — 2 meds ──
     {
       id: "med15", pacienteId: "u5", nombre: "Topiramato", dosis: "25 mg",
@@ -329,6 +366,28 @@ window.BioNovaData = (function () {
       notas: "Sesión de rehabilitación semana 6"
     },
 
+    // ── María de los Ángeles Molano (u6) ──
+    {
+      id: "a14", pacienteId: "u6", doctorId: "m1",
+      doctorNombre: "Dr. Alejandro Mendoza", especialidad: "Medicina Interna",
+      fecha: "2026-04-22", hora: "09:00", modalidad: "presencial",
+      link: null, estado: "proxima",
+      centroMedico: "Clínica Versalles",
+      direccion: "Av. 5a Nte. #23N-46/57, San Vicente, Cali",
+      mapsLink: "https://www.google.com/maps/dir//Cl%C3%ADnica+Versalles,+Av.+5a+Nte.+%2323N-46%2F57,+San+Vicente,+Cali,+Valle+del+Cauca",
+      notas: "Control trimestral de diabetes e hipertensión. Traer glucómetro y registro de presión."
+    },
+    {
+      id: "a15", pacienteId: "u6", doctorId: "m1",
+      doctorNombre: "Dr. Alejandro Mendoza", especialidad: "Medicina Interna",
+      fecha: "2026-03-05", hora: "10:30", modalidad: "presencial",
+      link: null, estado: "completada",
+      centroMedico: "Clínica Versalles",
+      direccion: "Av. 5a Nte. #23N-46/57, San Vicente, Cali",
+      mapsLink: "https://www.google.com/maps/dir//Cl%C3%ADnica+Versalles",
+      notas: "Revisión de HbA1c — resultado 7.2%, en rango. Continuar tratamiento."
+    },
+
     // ── Sofía Guzmán (u5) ──
     {
       id: "a11", pacienteId: "u5", doctorId: "m2",
@@ -395,6 +454,22 @@ window.BioNovaData = (function () {
       descripcion: "Tomó Losartán (50 mg)",
       estado: "success",
       fechaHora: "2026-04-13T08:05:00Z"
+    },
+    {
+      id: "ev5",
+      pacienteId: "u6",
+      tipo: "toma_med",
+      descripcion: "Tomó Metformina (850 mg)",
+      estado: "success",
+      fechaHora: "2026-04-13T07:38:00Z"
+    },
+    {
+      id: "ev6",
+      pacienteId: "u6",
+      tipo: "toma_perdida",
+      descripcion: "No registró toma de Glibenclamida",
+      estado: "danger",
+      fechaHora: "2026-04-12T07:30:00Z"
     }
   ];
 
@@ -407,10 +482,10 @@ window.BioNovaData = (function () {
 
     // Target adherence rates per patient
     const targetRates = {
-      "u1": 0.72, "u2": 0.58, "u3": 0.94, "u4": 0.81, "u5": 0.66
+      "u1": 0.72, "u2": 0.58, "u3": 0.94, "u4": 0.81, "u5": 0.66, "u6": 0.76
     };
 
-    ["u1","u2","u3","u4","u5"].forEach(uid => {
+    ["u1","u2","u3","u4","u5","u6"].forEach(uid => {
       const meds = medications.filter(m => m.pacienteId === uid && m.frecuencia !== "a_demanda");
       history[uid] = [];
       const rate = targetRates[uid] || 0.75;
@@ -458,6 +533,11 @@ window.BioNovaData = (function () {
     { id: "n11", usuarioId: "u4", tipo: "cita", titulo: "Cita mañana — Fisioterapia", descripcion: "Sesión virtual de rehabilitación mañana 15 de abril a las 2:00 PM. Revisa tu conexión a internet.", timestamp: new Date("2026-04-13T10:00:00").toISOString(), leida: false },
     { id: "n12", usuarioId: "u4", tipo: "recordatorio", titulo: "Tomar Celecoxib 200 mg", descripcion: "Dosis de las 20:00. Recuerda tomarlo con comida para proteger el estómago.", timestamp: new Date("2026-04-13T19:45:00").toISOString(), leida: false },
 
+    // María de los Ángeles Molano (u6)
+    { id: "n15", usuarioId: "u6", tipo: "recordatorio", titulo: "Tomar Metformina 850 mg", descripcion: "Corresponde la dosis de las 07:30. Tómala con el desayuno.", timestamp: new Date("2026-04-13T07:30:00").toISOString(), leida: false },
+    { id: "n16", usuarioId: "u6", tipo: "cita", titulo: "Cita médica en 9 días", descripcion: "Cita presencial con el Dr. Alejandro Mendoza el 22 de abril a las 9:00 AM en Clínica Versalles.", timestamp: new Date("2026-04-13T08:00:00").toISOString(), leida: false },
+    { id: "n17", usuarioId: "u6", tipo: "alerta", titulo: "Glucosa en ayunas elevada", descripcion: "El registro de ayer muestra glucosa en 145 mg/dL. Recuerda tomar Glibenclamida antes del desayuno.", timestamp: new Date("2026-04-12T09:00:00").toISOString(), leida: false },
+
     // Sofía (u5)
     { id: "n13", usuarioId: "u5", tipo: "alerta", titulo: "Posible crisis de migraña", descripcion: "Llevas 2 días sin registrar el Topiramato. Saltarse el preventivo aumenta la frecuencia de episodios.", timestamp: new Date("2026-04-12T09:00:00").toISOString(), leida: false },
     { id: "n14", usuarioId: "u5", tipo: "cita", titulo: "Cita de Neurología en 9 días", descripcion: "Cita presencial con Dra. Carolina Ospina el 22 de abril a las 10:30 AM en Fundación Valle del Lili.", timestamp: new Date("2026-04-13T08:00:00").toISOString(), leida: false }
@@ -472,7 +552,8 @@ window.BioNovaData = (function () {
     "u2": { medsActivos: 2, adherenciaMes: "92%", citasAsistidas: 4, rachaActual: "12 días", mejorRacha: "20 días", masOlvidado: "Montelukast", dataSemanal: [88, 90, 92, 92] },
     "u3": { medsActivos: 3, adherenciaMes: "95%", citasAsistidas: 8, rachaActual: "21 días", mejorRacha: "21 días", masOlvidado: "Ninguno", dataSemanal: [90, 95, 95, 95] },
     "u4": { medsActivos: 5, adherenciaMes: "58%", citasAsistidas: 15, rachaActual: "0 días", mejorRacha: "5 días", masOlvidado: "Celecoxib", dataSemanal: [65, 60, 55, 58] },
-    "u5": { medsActivos: 2, adherenciaMes: "78%", citasAsistidas: 3, rachaActual: "2 días", mejorRacha: "10 días", masOlvidado: "Topiramato", dataSemanal: [80, 75, 78, 78] }
+    "u5": { medsActivos: 2, adherenciaMes: "78%", citasAsistidas: 3, rachaActual: "2 días", mejorRacha: "10 días", masOlvidado: "Topiramato", dataSemanal: [80, 75, 78, 78] },
+    "u6": { medsActivos: 4, adherenciaMes: "76%", citasAsistidas: 8, rachaActual: "4 días", mejorRacha: "12 días", masOlvidado: "Glibenclamida", dataSemanal: [72, 74, 78, 76] }
   };
 
   // ─── TIPS DE SALUD (15) ───────────────────────────────────
@@ -498,6 +579,7 @@ window.BioNovaData = (function () {
   // ─── CUENTAS GOOGLE MOCK ──────────────────────────────────
   const googleAccounts = {
     paciente: [
+      { id: "u6", nombre: "María de los Ángeles Molano", email: "maria.molano@gmail.com" },
       { id: "u1", nombre: "Valentina Torres",       email: "valentina.torres@gmail.com" },
       { id: "u2", nombre: "Andrés Felipe Martínez", email: "andres.martinez@gmail.com" },
       { id: "u3", nombre: "Camila Ríos Herrera",    email: "camila.rios@gmail.com" },

@@ -120,11 +120,7 @@ window.BioNovaAuth = (function () {
     document.getElementById('btn-logout-cancel')?.addEventListener('click', () => {
       closeModalEl(document.getElementById('modal-logout-overlay'));
     });
-
-    // Mobile sidebar toggle (dashboard screen only)
-    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-      document.getElementById('main-sidebar')?.classList.toggle('mobile-open');
-    });
+    // Mobile sidebar toggle is handled globally by sidebarShared.js
   }
 
   // ─── GOOGLE MODAL ──────────────────────────────────────────

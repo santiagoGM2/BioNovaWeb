@@ -214,6 +214,20 @@
   color: var(--color-text-secondary);
 }
 
+/* ─── DASHBOARD CHART GRID ───────────────────────────────────── */
+.dash-chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .dash-chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ─── DASHBOARD ──────────────────────────────────────────────── */
 .dashboard-hero {
   background: var(--color-surface);
@@ -558,4 +572,42 @@
 @media (max-width: 480px) {
   .login-card { padding: var(--space-lg) var(--space-md); }
   .global-kpi-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── MOBILE TOPBAR DATE HIDE ────────────────────────────────── */
+@media (max-width: 768px) {
+  .topbar-date { display: none; }
+
+  /* Prevent section-header overflow on mobile */
+  .section-header {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  /* Medications topbar button: hide text on very small screens */
+  @media (max-width: 400px) {
+    #btn-add-med .btn-text { display: none; }
+  }
+
+  /* Stats KPI cards: 2 columns on mobile */
+  .stats-table-section .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Global highlights stack on mobile */
+  .global-highlights-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Charts grid 1 col on mobile */
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Notif page header: wrap on small screens */
+  .notif-page-header {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
 }
