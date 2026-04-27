@@ -74,7 +74,7 @@ window.BioNovaData = (function () {
       edad: 67,
       condicion: "Diabetes tipo 2 / Hipertensión arterial",
       avatar: null,
-      cuidadorId: null
+      cuidadorId: "c4"
     },
 
     // ── MÉDICOS ──
@@ -128,6 +128,15 @@ window.BioNovaData = (function () {
       pacienteVinculadoId: "u5",
       avatar: null,
       relacion: "Hermana"
+    },
+    {
+      id: "c4",
+      role: "cuidador",
+      nombre: "Lina Molano",
+      email: "lina.molano@gmail.com",
+      pacienteVinculadoId: "u6",
+      avatar: null,
+      relacion: "Hija"
     }
   ];
 
@@ -587,6 +596,7 @@ window.BioNovaData = (function () {
       { id: "u5", nombre: "Sofía Guzmán Álvarez",   email: "sofia.guzman@gmail.com" }
     ],
     cuidador: [
+      { id: "c4", nombre: "Lina Molano",            email: "lina.molano@gmail.com" },
       { id: "c1", nombre: "María Fernanda Torres", email: "mafe.torres@gmail.com" },
       { id: "c2", nombre: "Jorge Salcedo",          email: "jorge.salcedo@gmail.com" },
       { id: "c3", nombre: "Lucía Guzmán",           email: "lucia.guzman@gmail.com" }
