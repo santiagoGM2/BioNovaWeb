@@ -68,44 +68,13 @@
           </svg>
         </button>
 
-        <!-- Médico -->
-        <button class="login-role-btn" id="btn-login-doctor" aria-label="Ingresar como médico" aria-expanded="false">
-          <div class="login-role-icon icon-doctor" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="3" />
-              <path d="M6.6 18.6A9 9 0 1 1 21 12h0a9 9 0 0 1-9 9" />
-              <path d="M12 12v3a3 3 0 0 0 6 0v-1" />
-            </svg>
-          </div>
-          <div class="login-role-text-group">
-            <div class="login-role-label">Médico</div>
-            <div class="login-role-desc">Acceso con credenciales</div>
-          </div>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            style="color:var(--color-text-disabled)">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-        </button>
-
-        <!-- Doctor inline form -->
-        <div class="doctor-login-form" id="doctor-login-form" role="form" aria-label="Formulario de acceso médico">
-          <div class="form-group">
-            <label class="form-label" for="doctor-email">Correo electrónico</label>
-            <input type="email" id="doctor-email" class="form-control" placeholder="medico@bionova.co"
-              autocomplete="email" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="doctor-password">Contraseña</label>
-            <input type="password" id="doctor-password" class="form-control" placeholder="••••••••"
-              autocomplete="current-password" />
-          </div>
-          <div class="form-error" id="doctor-login-error" role="alert"></div>
-          <button class="btn btn-primary btn-full mt-sm" id="doctor-login-submit" style="margin-top:12px">
-            Ingresar como médico
-          </button>
-          <div style="margin-top:10px;font-size:12px;color:var(--color-text-disabled);text-align:center">
-            Demo: medico@bionova.co · dra.ospina@bionova.co / doctor123
-          </div>
+        <!-- Médico (oculto) -->
+        <button class="login-role-btn" id="btn-login-doctor" aria-label="Ingresar como médico" aria-expanded="false" style="display:none" aria-hidden="true" tabindex="-1"></button>
+        <div class="doctor-login-form" id="doctor-login-form" role="form" aria-label="Formulario de acceso médico" style="display:none" aria-hidden="true">
+          <input type="email" id="doctor-email" style="display:none" />
+          <input type="password" id="doctor-password" style="display:none" />
+          <div class="form-error" id="doctor-login-error"></div>
+          <button id="doctor-login-submit" style="display:none"></button>
         </div>
 
         <!-- Cuidador -->
